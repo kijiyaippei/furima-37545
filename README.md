@@ -23,6 +23,11 @@ Things you may want to cover:
 
 * ...
 
+<<<<<<< HEAD
+=======
+
+#2022/6/17　修正
+>>>>>>> d6b926cb205e07bc0ba22fc25c94e2456be6351a
 ## users テーブル
 
 | Column               | Type        | Options     |
@@ -38,7 +43,8 @@ Things you may want to cover:
 | birth_date           | date        | null: false |
 
 ### Association
-- has_many :items
+
+- has_manny :items
 - has_many :orders
 
 ## items テーブル
@@ -56,14 +62,14 @@ Things you may want to cover:
 | user                       | reference | null: false, foreign_key: true |
 
 ### Association
+
 - belongs_to :user
-- has_one :order
-- has_one_attached :image
 
 ## orders テーブル
 
 | Column          | Type            | Options                        |
 | --------------- | ----------------| -----------------------------  |
+<<<<<<< HEAD
 | item            | references      | null: false, foreign_key: true |
 | user            | references      | null: false, foreign_key: true |
 
@@ -74,12 +80,28 @@ Things you may want to cover:
 ## addresses テーブル
 | Column          | Type            | Options                        |
 | --------------- | ----------------| -----------------------------  |
+=======
+| card_number     | string          | null: false                    |
+| card_exp_month  | string          | null: false                    |
+| card_exp_year   | string          | null: false                    |
+| card_cvc        | string          | null: false                    |
+>>>>>>> d6b926cb205e07bc0ba22fc25c94e2456be6351a
 | postal_code     | string          | null: false                    |
 | prefecture      | string          | null: false                    |
 | city            | string          | null: false                    |
 | addresses       | string          | null: false                    |
+<<<<<<< HEAD
 | building        | string          |                                |
 | order           | references      | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :order
+=======
+| building        | string          | null: false                    |
+| phone_number    | string          | null: false                    |
+| user            | references      | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+>>>>>>> d6b926cb205e07bc0ba22fc25c94e2456be6351a
