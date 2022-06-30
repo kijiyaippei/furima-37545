@@ -23,7 +23,8 @@ Things you may want to cover:
 
 * ...
 
-#2022/6/17
+
+#2022/6/17　修正
 ## users テーブル
 
 | Column               | Type        | Options     |
