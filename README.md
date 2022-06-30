@@ -22,9 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-
-#2022/6/17　修正
 ## users テーブル
 
 | Column               | Type        | Options     |
@@ -40,8 +37,7 @@ Things you may want to cover:
 | birth_date           | date        | null: false |
 
 ### Association
-
-- has_manny :items
+- has_many :items
 - has_many :orders
 
 ## items テーブル
@@ -59,25 +55,34 @@ Things you may want to cover:
 | user                       | reference | null: false, foreign_key: true |
 
 ### Association
-
 - belongs_to :user
+- has_one :order
+- has_one_attached :image
 
 ## orders テーブル
 
 | Column          | Type            | Options                        |
-| --------------- | ----------------| -----------------------------  |
-| card_number     | string          | null: false                    |
-| card_exp_month  | string          | null: false                    |
-| card_exp_year   | string          | null: false                    |
-| card_cvc        | string          | null: false                    |
+| --------------- | ----------------| -----------------------------  |                  
+| user            | references      | null: false, foreign_key: true |
+| item            | references      | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+
+## addresses テーブル
+
+| Column          | Type            | Options                        |
+| --------------- | ----------------| -----------------------------  |                  
 | postal_code     | string          | null: false                    |
 | prefecture      | string          | null: false                    |
 | city            | string          | null: false                    |
 | addresses       | string          | null: false                    |
-| building        | string          | null: false                    |
-| phone_number    | string          | null: false                    |
-| user            | references      | null: false, foreign_key: true |
+| city            | string          | null: false                    |
+| building        | string          |                                |
+| phone_number    | bigint          | null: false                    |
+| order           | references      | null: false, foreign_key: true |
 
 ### Association
+- belongs_to :order
 
-- belongs_to :user
