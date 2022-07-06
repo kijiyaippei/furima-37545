@@ -82,7 +82,7 @@ Things you may want to cover:
 | city                | string          | null: false                    |
 | addresses           | string          | null: false                    |
 | building            | string          |                                |
-| phone_number        | bigint          | null: false                    |
+| phone_number        | string          | null: false                    |
 | order               | references      | null: false, foreign_key: true |
 
 ### Association
