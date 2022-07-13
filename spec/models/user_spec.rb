@@ -34,7 +34,7 @@ it 'last_nameは全角でないと登録できない' do
   expect(@user.errors.full_messages).to include("Last name is invalid")
 end
 it 'first_nameは全角でないと登録できない' do
-  @user.first_name = 'a'
+  @user.first_name = ''
   @user.valid?
   expect(@user.errors.full_messages).to include("First name is invalid")
 end
@@ -89,7 +89,12 @@ it 'passwordは半角英字のみでは登録できない' do
   @user.valid?
   expect(@user.errors.full_messages).to include("Password is invalid")
 end
-
+it 'passwordは全角文字を含むと登録できない' do
+  @user.password = 'aaaaaaあ'
+  @user.password_confirmation = 'aaaaaaあ'
+  @user.valid?
+  expect(@user.errors.full_messages).to include("Password is invalid")
+end
 it 'last_nameは全角日本語以外では登録できない' do
 @user.last_name = 'test'
 @user.valid? 
