@@ -121,4 +121,6 @@ it 'first_name_kanaは英字以外では登録できない' do
 end
 end
 end
+
 end
+
