@@ -89,6 +89,7 @@ it 'passwordは半角英字のみでは登録できない' do
   @user.valid?
   expect(@user.errors.full_messages).to include("Password is invalid")
 end
+
 it 'passwordは全角文字を含むと登録できない' do
   @user.password = 'aaaaaaあ'
   @user.password_confirmation = 'aaaaaaあ'
@@ -120,4 +121,6 @@ it 'first_name_kanaは英字以外では登録できない' do
 end
 end
 end
+
 end
+
