@@ -111,31 +111,39 @@
       </li>
     </ul>
   </div>
-
+   
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >
       新規投稿商品
-    </div>
-    <ul class='item-lists'>
+    </div>    
 
+       
+      
+    <ul class='item-lists'> 
+       <% @items.each do |item| %>
+     <% if item.image.present? %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to ("/users/:user_id/items/#{item.id}") do %>
+  
         <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-
+          <%= image_tag item.image, class: "item-img" %>  
+          
+  <%# @orders.each do |order| %>
+          <%# if item.id == order.item_id %>
+          <div class='sold-out'> 
+            <span>Sold Out!!</span> 
+          </div> 
+          <%# end %>
+  <%# end %>
 
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "商品名" %>
+            <%= item.item_name %>
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+            <span><%= item.item_price %>円<br><%= item.status.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -143,9 +151,16 @@
           </div>
         </div>
         <% end %>
-      </li>
+         </li>
+    <% end %>
+     <% end %>
+     </ul>
 
-        <%= link_to '#' do %>
+<ul class='item-lists'> 
+<% @items.each do |item| %>
+  <% unless item.image.present? %>
+      <li class='list'>
+        <%= link_to ("/") do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -159,13 +174,11 @@
             </div>
           </div>
         </div>
-        <% end %>
+  <% end %>   
       </li>
-
+       <% end %>
+        <% end %>
     </ul>
-  </div>
-
-</div>
 
 <% if user_signed_in? %>
 <%= link_to(new_user_item_path(current_user.id), class: 'purchase-btn') do %>
@@ -181,3 +194,5 @@
 
 
 <%= render "shared/footer" %>
+
+
