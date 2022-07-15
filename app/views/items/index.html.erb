@@ -122,18 +122,20 @@
       
     <ul class='item-lists'> 
        <% @items.each do |item| %>
-     <% if @image.present? %>
+     <% if item.image.present? %>
       <li class='list'>
         <%= link_to ("/users/:user_id/items/#{item.id}") do %>
   
         <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>      
-          <%# if @order.item_id == item.id %>
+          <%= image_tag item.image, class: "item-img" %>  
+          
+  <%# @orders.each do |order| %>
+          <%# if item.id == order.item_id %>
           <div class='sold-out'> 
             <span>Sold Out!!</span> 
           </div> 
           <%# end %>
-
+  <%# end %>
 
         </div>
         <div class='item-info'>
@@ -155,7 +157,8 @@
      </ul>
 
 <ul class='item-lists'> 
-  <% unless @image.present? %>
+<% @items.each do |item| %>
+  <% unless item.image.present? %>
       <li class='list'>
         <%= link_to ("/") do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -174,6 +177,7 @@
   <% end %>   
       </li>
        <% end %>
+        <% end %>
     </ul>
 
 <% if user_signed_in? %>

@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
 before_action :authenticate_user!, except: [:index]
-def index
-@item = Item.all
-@items = @item.order("created_at DESC")
-#@order = Order.find_by(params[:item_id])
-@image = Item.find_by(params[:image])
 
+def index
+    @items = Item.all.order("created_at DESC")
+
+    #@orders = Order.all
 end
 
 def new
