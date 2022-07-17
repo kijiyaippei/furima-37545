@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 def index
     @items = Item.all.order("created_at DESC")
 
-    #@orders = Order.all
+    #@orders = Order.all 
 end
 
 def new
@@ -23,7 +23,29 @@ end
 def show
     @item = Item.find(params[:id])
 
-    #@order = Order.find_by(params[:item_id])
+end
+
+def edit
+    @item = Item.find(params[:id])
+
+ if user_signed_in? && current_user.id != @item.user_id 
+    redirect_to root_path
+    end
+    
+ unless user_signed_in?
+    redirect_to new_user_session_path
+ end
+end
+
+def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if  @item.valid?
+        redirect_to user_item_path(@item.user_id)
+    else 
+        render :edit
+    
+    end
 end
 
 private
