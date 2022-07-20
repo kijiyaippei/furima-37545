@@ -65,6 +65,16 @@ it '電話番号が12桁だと登録できない' do
 @order_address.valid?
 expect(@order_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
 end 
+it '郵便番号はハイフンを含む必要がある' do
+  @order_address.postal_code = '0000000'
+  @order_address.valid?
+  expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+  end 
+it '電話番号に半角数値以外が含まれる場合は登録できない' do
+    @order_address.phone_number = 'a0000000000'
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is not a number")
+    end 
 it 'user_idと紐つく必要がある' do
 @order_address.user_id = nil
 @order_address.valid?
