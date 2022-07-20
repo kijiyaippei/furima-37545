@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 def index
     @items = Item.all.order("created_at DESC")
 
-    #@orders = Order.all 
+    @orders = Order.all 
 
 end
 
@@ -25,30 +25,33 @@ end
 end
 
 def show
-
-    #@orders = Order.all
-    #@orders = Order.find_by(params[:item_id])
+    @orders = Order.all
+    order = Order.all
+    order = Order.where("item_id = #{@item.id}")
+    if user_signed_in? && @item.user_id == current_user.id && order.present?
+        redirect_to root_path
+     end
 end
 
-#def edit
- #if user_signed_in? && current_user.id != @item.user_id 
-  #  redirect_to root_path
-   # end
+def edit
+ if user_signed_in? && current_user.id != @item.user_id 
+    redirect_to root_path
+    end
     
- #unless user_signed_in?
-  #  redirect_to new_user_session_path
- #end
-#end
+ unless user_signed_in?
+    redirect_to new_user_session_path
+ end
+end
 
-#def update
- #   @item.update(item_params)
-  #  if  @item.valid?
-   #     redirect_to user_item_path(@item.user_id)
-    #else 
-     #   render :edit
+def update
+    @item.update(item_params)
+    if  @item.valid?
+        redirect_to user_item_path(@item.user_id)
+    else 
+        render :edit
     
-   # end
-#end
+   end
+end
 
 def destroy
     item = Item.find(params[:id])
