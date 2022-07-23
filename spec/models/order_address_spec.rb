@@ -28,7 +28,7 @@ end
 it '郵便番号が必要である' do
 @order_address.postal_code = ''
 @order_address.valid?
-expect(@order_address.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid")
+expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
 end
 it '郵便番号は3桁-4桁である必要がある' do
 @order_address.postal_code = '00-000'
@@ -53,7 +53,7 @@ end
 it '電話番号が必要がある' do
 @order_address.phone_number = ''
 @order_address.valid?
-expect(@order_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is not a number", "Phone number is too short (minimum is 10 characters)")
+expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
 end 
 it '電話番号が9桁だと登録できない' do
 @order_address.phone_number = '000000000'

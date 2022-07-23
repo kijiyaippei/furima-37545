@@ -7,7 +7,6 @@ FactoryBot.define do
     token {'tok_abcdefghijk00000000000000000'}
     prefecture_id {2}
     building {'test'}
-    association :item
-    association :user
+ 
   end
 end
