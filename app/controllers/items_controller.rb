@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-
     before_action :set_item, only: [:show, :edit, :update]
 
 def index
@@ -24,19 +23,15 @@ end
 end
 
 def show
-    @orders = Order.all
-end
-
-def edit
-    order = Order.all
+    @orders = Order.all    #item_showにおいて、SOLD OUTの表示の際に、each〜doメソッドの中で使用しています
     order = Order.where("item_id = #{@item.id}")
-    if user_signed_in? && @item.user_id == current_user.id && order.present?
+    if @item.user_id == current_user.id && order.present?
         redirect_to root_path
      end
+end
     
- unless user_signed_in?
-    redirect_to new_user_session_path
- end
+
+def edit
 end
 
 def update
@@ -45,19 +40,12 @@ def update
         redirect_to user_item_path(@item.user_id)
     else 
         render :edit
-    
    end
 end
 
 def destroy
     item = Item.find(params[:id])
-    if if user_signed_in? && current_user.id != @item.user_id 
      item.destroy
-    redirect_to action: :index
-
-end
-
-    end
 end
 
 private
@@ -69,6 +57,11 @@ def set_item
 @item = Item.find(params[:id])
 end
 
+def user_item
+    if current_user.id != @item.user_id 
+        redirect_to root_path
+        end
+end
 
 end
 

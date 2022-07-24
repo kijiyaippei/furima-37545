@@ -1,24 +1,18 @@
 class OrdersController < ApplicationController
+    before_action :authenticate_user!, only: [:index]
     before_action :set_item
+    before_action :set_order, only: [:index]
     def index
-        @item = Item.find(params[:item_id])
          @order_address = OrderAddress.new
-         order = Order.all
          order = Order.where("item_id = #{@item.id}")
          
-         if user_signed_in? && @item.user_id == current_user.id && order.present?
+         if order.present?
             redirect_to root_path
          end
-         if user_signed_in? && @item.user_id == current_user.id 
-            redirect_to root_path
-         end
-         unless user_signed_in?
-            redirect_to new_user_session_path
-         end
+
     end
 
     def create
-        @item = Item.find(params[:item_id])
         @order_address = OrderAddress.new(order_params)
         if @order_address.valid?
             Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -39,8 +33,13 @@ private
 def order_params
 params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :addresses, :phone_number).merge(item_id: @item.id, user_id: current_user.id, token: params[:token])
 end
+
 def set_item
     @item = Item.find(params[:item_id])
     end
 
+def set_order
+    if @item.user_id == current_user.id
+        redirect_to root_path
+    end
 end
