@@ -22,6 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
 ## users テーブル
 
 | Column               | Type        | Options     |
@@ -39,9 +40,11 @@ Things you may want to cover:
 ### Association
 
 - has_manny :items
+
 - has_many :orders
 
 ## items テーブル
+
 
 | Column                     | Type      | Options                        |
 | -------------------------- | ----------| ------------------------------ |
@@ -58,6 +61,8 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
+- has_one :order
+
 
 ## orders テーブル
 
@@ -76,6 +81,6 @@ Things you may want to cover:
 | user            | references      | null: false, foreign_key: true |
 
 ### Association
-
 - belongs_to :user
+
 

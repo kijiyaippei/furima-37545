@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
     before_action :authenticate_user!, except: [:index]
     before_action :set_item, only: [:show, :edit, :update]
 
@@ -23,6 +24,7 @@ end
 end
 
 def show
+
     @orders = Order.all    
     order = Order.where("item_id = #{@item.id}")
     if @item.user_id == current_user.id && order.present?
@@ -64,3 +66,4 @@ def user_item
 end
 
 end
+
