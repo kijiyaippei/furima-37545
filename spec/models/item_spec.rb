@@ -75,11 +75,10 @@ it '商品説明がないと登録できない' do
   @item.valid?
 expect(@item.errors.full_messages).to include("Item info can't be blank")
 end
-it '価格は空だと保存できない' do
+it '価格は空だと登録できない' do
   @item.item_price = ''
   @item.valid?
-  binding.pry
-expect(@item.errors.full_messages).to include("Item info can't be blank")
+expect(@item.errors.full_messages).to include("Item price can't be blank", "Item price is not a number")
 end
 it 'user_idが紐ついている必要ある' do
   @item.user_id = nil
