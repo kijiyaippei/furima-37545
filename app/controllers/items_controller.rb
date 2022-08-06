@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
     before_action :authenticate_user!, except: [:index]
     before_action :set_item, only: [:show, :edit, :update]
 
-def index
+ def index
     @items = Item.all.order("created_at DESC")
     @orders = Order.all  
 end
