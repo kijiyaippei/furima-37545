@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 def index
     @items = Item.all.order("created_at DESC")
     @orders = Order.all  
-
 end
 
 def new
@@ -24,7 +23,6 @@ end
 end
 
 def show
-
     @orders = Order.all    
     order = Order.where("item_id = #{@item.id}")
     if @item.user_id == current_user.id && order.present?
@@ -64,6 +62,5 @@ def user_item
         redirect_to root_path
         end
 end
-
 end
 
