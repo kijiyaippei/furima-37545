@@ -27,9 +27,9 @@
       </span>
     </div>
 
-<% if user_signed_in? && current_user.id == @item.user_id %>
+<% if user_signed_in? && current_user.id === @item.user_id %>
 <% @orders.each do |order| %>
-<% unless order.item_id == @item.id %>
+<% unless order.item_id === @item.id %>
     <%= link_to "商品の編集", edit_user_item_path, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "/users/:user_id/items/#{@item.id}", method: :delete, class:"item-destroy" %>
@@ -40,7 +40,7 @@
 
 <% if user_signed_in? && current_user.id != @item.user_id %>
 <% @orders.each do |order| %>
-<% unless order.item_id == @item.id %>
+<% unless order.item_id === @item.id %>
     <%= link_to "購入画面に進む", item_orders_path(@item.id), class:"item-red-btn" %>
  <% break %>
 <% end %>
