@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
  def index
     @items = Item.all.order("created_at DESC")
     @orders = Order.all  
+    @item = Item.find_by(params[:image])
 end
 
 def new
@@ -23,7 +24,8 @@ end
 end
 
 def show
-    @orders = Order.all    
+    @orders = Order.all   
+    @order = Order.find_by(params[:item_id])
     order_item = Order.where("item_id = #{@item.id}")
     if @item.user_id == current_user.id && order_item.present?
         redirect_to root_path
@@ -46,6 +48,7 @@ end
 def destroy
     item = Item.find(params[:id])
      item.destroy
+     redirect_to action: :index
 end
 
 private
