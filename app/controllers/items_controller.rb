@@ -25,9 +25,8 @@ end
 
 def show
     @orders = Order.all   
-    @order = Order.find_by(params[:item_id])
-    order_item = Order.where("item_id = #{@item.id}")
-    if @item.user_id == current_user.id && order_item.present?
+    @order = Order.where("item_id = #{@item.id}")
+    if @item.user_id == current_user.id && @order.present?
         redirect_to root_path
      end
 end
