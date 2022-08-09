@@ -8,8 +8,9 @@ Rails.application.routes.draw do
  resources :users do
  resources :items
  end
- resources :items do
-  resources :orders
- end
+
+resources :items do
+resources :orders
+end
 end
 

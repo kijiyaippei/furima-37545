@@ -117,9 +117,7 @@
     <div class="subtitle" >
       新規投稿商品
     </div>    
-
-       
-      
+ 
     <ul class='item-lists'> 
        <% @items.each do |item| %>
      <% if item.image.present? %>
@@ -137,7 +135,6 @@
           <% end %>
   <% end %>
         </div>
-        
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.item_name %>
@@ -152,15 +149,14 @@
         </div>
         <% end %>
          </li>
-    <% end %>
-     <% end %>
-     </ul>
+          <% end %>
+           <% end %>
+           </ul>
 
-
-<ul class='item-lists'> 
-<% @items.each do |item| %>
-      <% unless item.image.present? %>
-      <li class='list'>
+   
+  <ul class='item-lists'>
+     <% unless @item.present? %>
+  <li class='list'>
         <%= link_to ("/") do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
@@ -175,11 +171,11 @@
             </div>
           </div>
         </div>
-  <% end %>   
+<% end %>
       </li>
-  <% end %>
-        <% end %>
-    </ul>
+          <% end %>
+     </ul>
+
 
 <% if user_signed_in? %>
 <%= link_to(new_user_item_path(current_user.id), class: 'purchase-btn') do %>

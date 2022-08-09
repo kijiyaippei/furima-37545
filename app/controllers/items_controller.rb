@@ -3,9 +3,10 @@ class ItemsController < ApplicationController
     before_action :authenticate_user!, except: [:index]
     before_action :set_item, only: [:show, :edit, :update]
 
-def index
+ def index
     @items = Item.all.order("created_at DESC")
     @orders = Order.all  
+    @item = Item.find_by(params[:image])
 end
 
 def new
@@ -23,9 +24,9 @@ end
 end
 
 def show
-    @orders = Order.all    
-    order_item = Order.where("item_id = #{@item.id}")
-    if @item.user_id == current_user.id && order_item.present?
+    @orders = Order.all   
+    @order = Order.where("item_id = #{@item.id}")
+    if @item.user_id == current_user.id && @order.present?
         redirect_to root_path
      end
 end
@@ -46,6 +47,7 @@ end
 def destroy
     item = Item.find(params[:id])
      item.destroy
+     redirect_to action: :index
 end
 
 private
