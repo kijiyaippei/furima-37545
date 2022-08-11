@@ -12,3 +12,4 @@ def basic_auth
         username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"] 
       end
 end
+end
