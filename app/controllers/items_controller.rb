@@ -33,13 +33,13 @@ end
     
 
 def edit
+
       if @item.user_id == current_user.id && @order.present?
         redirect_to root_path
       end
       if @item.user_id != current_user.id
         redirect_to root_path
       end
-
 
 end
 
