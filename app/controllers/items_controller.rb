@@ -26,14 +26,12 @@ end
 def show
     @orders = Order.all   
     @order = Order.where("item_id = #{@item.id}")
-    #if @item.user_id == current_user.id && @order.present?
-     #   redirect_to root_path
-     #end
+
 end
     
 
 def edit
-
+    @order = Order.where("item_id = #{@item.id}")
       if @item.user_id == current_user.id && @order.present?
         redirect_to root_path
       end
